@@ -22,17 +22,17 @@ public isAdmin: boolean = true
     this.tiles.push({
       title: 'Parameters',
       summary: 'Parameters management',
-      action: ['dasboard']
+      action: ['dashboard']
     },
     {
       title: 'Students',
       summary: 'Add,remove,view students',
-      action: ['dasboard']
+      action: ['dashboard']
     },
     {
       title: 'Course',
       summary: 'Manage course and media',
-      action: ['dasboard']
+      action: ['dashboard']
     }
     )
   }

@@ -1,5 +1,6 @@
 package fr.aelion.streamer.controllers;
 
+import fr.aelion.streamer.dto.SimpleStudentDto;
 import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class StudentController {
         return  studentService.findAll();
     }
 
+    @GetMapping("simple")
+    @CrossOrigin
+    public List<SimpleStudentDto> findAllSimple() {
+        return studentService.findSimpleStudents();
+    }
     /**
      * post a nex student
      * uri  : post http://127.0.0.1:5000/apip /v1/students

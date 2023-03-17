@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tile',
@@ -6,11 +7,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
-  @Input() public tileInfo: any
+  @Input() tileInfo: any;
 
-  constructor() { }
+
+
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  onNavigate(): void {
+    this._router.navigate(this.tileInfo.action)
+    .then((result: boolean) => {
+      console.log(`Something happens ${result ? 'ok': 'ko'}`)
+    })
+  }
 }

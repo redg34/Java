@@ -27,7 +27,7 @@ public isAdmin: boolean = true
     {
       title: 'Students',
       summary: 'Add,remove,view students',
-      action: ['dashboard']
+      action: ['/', 'student', 'list']
     },
     {
       title: 'Course',

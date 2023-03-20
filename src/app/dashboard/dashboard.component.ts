@@ -32,7 +32,7 @@ public isAdmin: boolean = true
     {
       title: 'Course',
       summary: 'Manage course and media',
-      action: ['dashboard']
+      action: ['/', 'course']
     }
     )
   }

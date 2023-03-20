@@ -3,6 +3,16 @@
 /**
 * Helpers
 **/
+body{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1em;
+
+}
+h1{
+  color: rgba(71, 71, 242, 0.52);
+
+}
+
 $cols: 12;
 
 @mixin col-basis($basis) {
@@ -21,6 +31,7 @@ $cols: 12;
 **/
 .container {
   width: 100%;
+
 }
 
 @media screen and (min-width: 36em) {
@@ -68,6 +79,7 @@ $cols: 12;
     flex-basis: 100%;
     margin-right: .5em;
     margin-left: .5em;
+
 
     &.xs-hidden {
       display: none;

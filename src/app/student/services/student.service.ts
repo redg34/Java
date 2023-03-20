@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IStudent } from '../interfaces/i-student';
 import { StudentModel } from '../models/student-model';
-
 import { environment } from './../../../environments/environment'
 @Injectable({
   providedIn: 'root'

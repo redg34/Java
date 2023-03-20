@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { IStudent } from '../interfaces/i-student';
 import { StudentModel } from '../models/student-model';
 import { environment } from './../../../environments/environment'
@@ -37,8 +37,13 @@ export class StudentService {
 
   public findByLoginOrEmail(email: string, login: string): void {}
 
-  public add(student: IStudent): void {
-    console.log(`Controller send ${JSON.stringify(student)}`)
+  public add(student: IStudent): Observable <any> {
+   return this._httpClient.post<IStudent>(
+      this.endpoint,
+      student
+    ).pipe(
+      take(1)
+    )
   }
 
 

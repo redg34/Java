@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from'@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,8 @@ import { MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule  ]
+    MatInputModule ,
+    MatSnackBarModule
+   ]
 })
 export class UiModule { }

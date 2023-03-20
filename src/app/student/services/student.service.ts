@@ -37,7 +37,10 @@ export class StudentService {
 
   public findByLoginOrEmail(email: string, login: string): void {}
 
-  public add(student: IStudent): void {}
+  public add(student: IStudent): void {
+    console.log(`Controller send ${JSON.stringify(student)}`)
+  }
+
 
   public update(student: StudentModel): void {}
 

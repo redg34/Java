@@ -33,9 +33,10 @@
         <input type="checkbox" [(ngModel)]="student.isSelected!" (click)="onSelectStudent(student)">
       </td>
       <td>{{ student.id }}</td>
-      <td>
-        {{ student | initials}}
+      <div><td>
+        <span class="buble">{{ student | initials}}</span>
       </td>
+    </div>
       <td>{{ student.lastName | uppercase}}</td>
       <td>{{ student.firstName }}</td>
       <td>{{ student.email }}</td>

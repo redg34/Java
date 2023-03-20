@@ -7,6 +7,7 @@ import { TileComponent } from './dashboard/components/tile/tile.component';
 import { StudentModule } from './student/student.module';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,9 +22,12 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     StudentModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

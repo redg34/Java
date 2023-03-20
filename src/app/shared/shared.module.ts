@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UiModule } from 'src/app/ui/ui.module';
 
 
 
@@ -16,12 +17,9 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    UiModule
   ]
 })
 
-export class SharedModule {
-
-  HttpClientModule: any
-  FormsModule: any
- }
+export class SharedModule {}

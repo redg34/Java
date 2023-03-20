@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from 'src/app/ui/ui.module';
 
 
@@ -18,7 +18,8 @@ import { UiModule } from 'src/app/ui/ui.module';
     HttpClientModule,
     RouterModule,
     FormsModule,
-    UiModule
+    UiModule,
+    ReactiveFormsModule
   ]
 })
 

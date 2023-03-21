@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("api/v1/students")// http://127.0.0.1:5000/api/v1/students permet de le récuperer sur l'url
@@ -29,7 +30,12 @@ public class StudentController {
     }
     @GetMapping("{id}")// get http://127.0.0.1:5000/api/v1/students/1
     public  ResponseEntity<?> findOne(@PathVariable int id){
-        return  ResponseEntity.ok("Have to find a Student  with id: " +id);
+        try {
+            return  ResponseEntity.ok(studentService.findOne(id));
+        }catch  (NoSuchElementException e) {
+            return  ResponseEntity.notFound().build();
+        }
+
     }
 
     @GetMapping("simple")
@@ -57,6 +63,17 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body((e.reject()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+    @PutMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CrossOrigin
+    public  ResponseEntity<?> update(@RequestBody Student student) {
+        try {
+            studentService.update(student);
+            return  ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+;        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

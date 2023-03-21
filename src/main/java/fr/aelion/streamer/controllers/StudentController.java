@@ -4,8 +4,6 @@ import fr.aelion.streamer.dto.AddStudentDto;
 import fr.aelion.streamer.dto.SimpleStudentDto;
 import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.services.StudentService;
-import fr.aelion.streamer.services.exceptions.EmailAlreadyExistsException;
-import fr.aelion.streamer.services.exceptions.LoginAlreadyExistsException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("api/v1/students")// http://127.0.0.1:5000/api/v1/students permet de le récuperer sur l'url
@@ -23,23 +20,14 @@ public class StudentController {
     private StudentService studentService;
     //its controller
     @GetMapping
-
+    @CrossOrigin
     public List<Student> findAll(){
 
         return  studentService.findAll();
     }
-    @GetMapping("{id}")// get http://127.0.0.1:5000/api/v1/students/1
-    public  ResponseEntity<?> findOne(@PathVariable int id){
-        try {
-            return  ResponseEntity.ok(studentService.findOne(id));
-        }catch  (NoSuchElementException e) {
-            return  ResponseEntity.notFound().build();
-        }
-
-    }
 
     @GetMapping("simple")
-
+    @CrossOrigin
     public List<SimpleStudentDto> findAllSimple() {
         return studentService.findSimpleStudents();
     }
@@ -49,31 +37,15 @@ public class StudentController {
      * @param student
      * @return
      */
-
-
-
     @PostMapping
+    @CrossOrigin
+
     public ResponseEntity<?> add(@Valid @RequestBody AddStudentDto student) {
         try {
-            Student newStudent = studentService.add(student);
-            return ResponseEntity.created(null).body(newStudent);
-        } catch(EmailAlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.reject());
-        } catch (LoginAlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body((e.reject()));
+
+            return ResponseEntity.created( null).body(studentService.add(student));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-    }
-    @PutMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @CrossOrigin
-    public  ResponseEntity<?> update(@RequestBody Student student) {
-        try {
-            studentService.update(student);
-            return  ResponseEntity.status(HttpStatus.NO_CONTENT).build()
-;        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 }

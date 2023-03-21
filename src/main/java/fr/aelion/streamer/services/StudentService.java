@@ -1,24 +1,24 @@
 package fr.aelion.streamer.services;
 
 import fr.aelion.streamer.dto.AddStudentDto;
+import fr.aelion.streamer.dto.ModuleDto;
 import fr.aelion.streamer.dto.SimpleStudentDto;
 import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.repositories.StudentRepository;
-import fr.aelion.streamer.services.exceptions.EmailAlreadyExistsException;
-import fr.aelion.streamer.services.exceptions.LoginAlreadyExistsException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 
 public class StudentService {
     @Autowired
-    private  StudentRepository repository;
+    private StudentRepository repository;
     private Student student;
 
     @Autowired
@@ -42,32 +42,17 @@ public class StudentService {
                 }).collect(Collectors.toList());
     }
 
-    public Student add(AddStudentDto student) throws Exception {
-        Student anyStudent = repository.findByEmail(student.getEmail());
+        public Student add(AddStudentDto student) throws Exception
+
+    {   Student anyStudent = repository.findByEmail(student.getEmail());
         if (anyStudent != null) {
-            throw new EmailAlreadyExistsException("Email " + student.getEmail() + " already exists");
-        }
-        anyStudent = repository.findByLogin(student.getLogin());
-        if (anyStudent != null) {
-            throw new LoginAlreadyExistsException("Login " + student.getLogin() + " already exists");
+            throw new Exception("Student already exists");
+
         }
         Student newStudent = modelMapper.map(student, Student.class);
-        newStudent = (Student) repository.save(newStudent);
 
-        return newStudent;
-    }
-    public void update(Student student) throws Exception {
-        try {
-            repository.save(student);
-        } catch(Exception e) {
-            throw new Exception("Something went wrong while updating Student");
-        }
-    }
+        newStudent  = (Student)   repository.save(newStudent);
 
-    public  Student findOne(int id) {
-        return repository.findById(id)
-        .map(s -> s)
-                .orElseThrow();
-    }
+        return newStudent;}
 
 }

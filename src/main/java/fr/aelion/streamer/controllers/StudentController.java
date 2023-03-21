@@ -22,14 +22,14 @@ public class StudentController {
     private StudentService studentService;
     //its controller
     @GetMapping
-    @CrossOrigin
+
     public List<Student> findAll(){
 
         return  studentService.findAll();
     }
 
     @GetMapping("simple")
-    @CrossOrigin
+
     public List<SimpleStudentDto> findAllSimple() {
         return studentService.findSimpleStudents();
     }
@@ -40,7 +40,7 @@ public class StudentController {
      * @return
      */
 
-    @CrossOrigin
+
 
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody AddStudentDto student) {

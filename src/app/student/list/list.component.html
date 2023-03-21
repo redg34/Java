@@ -33,10 +33,14 @@
         <input type="checkbox" [(ngModel)]="student.isSelected!" (click)="onSelectStudent(student)">
       </td>
       <td>{{ student.id }}</td>
-      <div><td>
-        <span class="buble">{{ student | initials}}</span>
+      <td>
+
+        <!--Anchor to UpdateComponent with the correct id-->
+        <a [routerLink]="['/', 'student', student.id, 'update']">
+          <span class="buble">{{ student | initials}}</span>
+        </a>
       </td>
-    </div>
+
       <td>{{ student.lastName | uppercase}}</td>
       <td>{{ student.firstName }}</td>
       <td>{{ student.email }}</td>

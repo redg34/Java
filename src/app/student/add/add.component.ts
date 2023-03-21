@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { StudentService } from '../services/student.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { IStudent } from '../interfaces/i-student';
+import { StudentModel } from '../models/student-model';
 
 
 
@@ -14,15 +15,16 @@ import { IStudent } from '../interfaces/i-student';
 
 
 export class AddComponent implements OnInit {
-
   public form: FormGroup = new FormGroup({})
+  public student: StudentModel =new StudentModel()
 
 
 
   constructor(
     private _formBuilder: FormBuilder,
     private _service: StudentService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+   // private _router: Router
   ) { }
 
 

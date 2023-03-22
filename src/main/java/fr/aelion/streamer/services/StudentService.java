@@ -54,5 +54,10 @@ public class StudentService {
         newStudent  = (Student)   repository.save(newStudent);
 
         return newStudent;}
+    public Student findOne(int id) {
+        return repository.findById(id)
+                .map(s -> s)
+                .orElseThrow();
+    }
 
 }

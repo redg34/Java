@@ -3,9 +3,11 @@ package fr.aelion.streamer.services;
 import fr.aelion.streamer.dto.FullCourseDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public interface CourseService {
+public interface CourseService<C> {
+    List<FullCourseDto> findAll();
 
-    public List<FullCourseDto> findAll();
+    FullCourseDto findOne(int id);
+
+
 }

@@ -15,15 +15,15 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column( nullable = false )
-    private  String title;
+    @Column(nullable = false)
+    private String title;
 
     private LocalDate createdAt;
 
     private LocalDate updatedAt;
 
     private String objective;
-    @OneToMany(mappedBy =  "course")
-    private  Set<Module> modules;
 
+    @OneToMany(mappedBy = "course")
+    private Set<Module> modules;
 }

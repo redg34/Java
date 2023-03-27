@@ -4,23 +4,25 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
 public class Module {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
-    private  String name;
+    private String name;
 
-    private  String objective;
+    private String objective;
 
+    @ManyToOne(targetEntity = Course.class)
+    @JoinColumn(name = "course_id")
+    private Course course;
 
-    /**
-     * récupère le cours complet*/
-    @ManyToOne
-    @JoinColumn(name =  "course_id")
-    private  Course course;
+    @OneToMany(mappedBy = "module")
+    private Set<Media> medias;
 }

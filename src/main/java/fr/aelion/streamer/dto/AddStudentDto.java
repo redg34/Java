@@ -6,19 +6,24 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class AddStudentDto {
-    @NotBlank
-    private  String lastName;
-    private  String firstName;
-    @NotNull
-    @Email
-    private  String email;
-    private  String phoneNumber;
+    @NotBlank(message = "Lastname cannot be null")
+    private String lastName;
 
-    @NotBlank
-    private  String login;
-    @NotBlank
-   // @Pattern(regexp  = ("/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/"))
-    private  String password;
+    private String firstName;
+
+    @NotNull(message = "Email cannot be null")
+    @Email(message = "email passed is not a valid email")
+    private String email;
+
+    private String phoneNumber;
+
+    @NotBlank(message = "login cannot be null")
+    @Size(min = 8, message="Login must have at least 8 chars")
+    private String login;
+
+    @NotBlank(message = "password cannot be null")
+    @Size(min = 8, message="Password must have at least 8 chars")
+    //@Pattern(regexp = "/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/")
+    private String password;
 }
